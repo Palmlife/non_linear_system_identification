@@ -1,0 +1,99 @@
+% the goal is to create a function that generates a function that implements
+% a robust identification method based on the given parameters.
+
+function [G_ML, f, noise_var, total_var, distortion_var] = robust_method_SA(file_name, fs, showPlot)
+    % Load data
+    [u, y, ~, sig, realizations, ~] = acquisition(file_name);
+
+    N = size(u, 1);
+    Npp = size(sig, 1); % number of samples of the original period
+    periods = N / Npp; % number of periods 
+
+    transientPeriods = 1;
+    assert(transientPeriods < periods, 'Transient periods to remove exceed total number of periods.');
+
+    u = u(transientPeriods*Npp + 1:end, :, :);
+    y = y(transientPeriods*Npp + 1:end, :, :);
+
+    %update number of samples
+    N = size(u, 1);
+    periods = periods - transientPeriods;
+
+    %% --------------- FRF estimate ---------------
+
+    % preallocation
+    G_2D = zeros(realizations, periods, Npp);
+    G_1D = zeros(realizations, Npp);
+    noiseVar_2D = zeros(realizations, Npp);
+    U_power = zeros(Npp, 1);  % Average |U|^2 across all periods and realizations
+
+    % for each realization
+    for r = 1:realizations
+        % for each period
+        for p = 1:periods
+            u_per = u((p-1)*Npp + 1:p*Npp, r, 1);
+            y_per = y((p-1)*Npp + 1:p*Npp, r, 1);
+            
+            % compute the FFT of both input and output
+            U = fft(u_per);
+            Y = fft(y_per);
+
+            % Estimate the FRF
+            G_2D(r, p, :) = Y ./ U;
+            
+            % Accumulate |U|^2 (power spectrum, no phase issues)
+            U_power = U_power + abs(U).^2;
+        end
+         % average noise out
+        G_1D(r, :) = squeeze(mean(G_2D(r, :, :), 2));
+        % var already devides by periods-1
+        noiseVar_2D(r, :) = squeeze(var(G_2D(r, :, :), 0, 2)) / periods;
+    end
+    
+    U_power = U_power / (realizations * periods);
+
+    G_ML = squeeze(mean(G_1D, 1))';
+    % mean already divides by realizations
+    noise_var = mean(noiseVar_2D, 1)' / realizations;
+    % var already devides by realizations-1
+    total_var = var(G_1D, 0, 1)' / (realizations);
+
+    distortion_var = max(total_var - noise_var, 0);
+    distortion_var_Y = distortion_var .* U_power;
+    f = (0:Npp-1)'*(fs/Npp);
+
+    if showPlot
+        
+        figure;
+      
+        subplot(211);
+        set(groot, 'defaultAxesColorOrder', colororder("sail"));
+        %set(groot, 'defaultAxesNextPlot', 'replacechildren');
+        plot(f, db(G_ML), '.', 'LineWidth', 2);
+        title('Robust Method');
+        xlabel('Frequency [Hz]');
+        ylabel('|G| [dB]');
+        xlim([1/fs fs/4]);
+        ylim([min(db(G_ML))-1 1.5*max(db(G_ML))])
+        grid on;
+        legend('G_{BLA} ')
+
+        subplot(212);
+        hold on;
+        set(groot, 'defaultAxesColorOrder', colororder("sail"));
+        %set(groot, 'defaultAxesNextPlot', 'replacechildren');
+        plot(f, db(noise_var),'.', 'LineWidth', 2);
+        plot(f, db(distortion_var),'.', 'LineWidth', 2);
+        plot(f, db(total_var), '.', 'LineWidth', 2);
+        %plot(f, db((noise_var)./G_ML), 'LineWidth', 2);
+        %plot(f, db(noiseVar_2D(2,:)), 'LineWidth', 2);
+        title('Variance Estimates');
+        xlabel('Frequency [Hz]');
+        ylabel('Variance [dBV^2]');
+        xlim([1/fs fs/4]);
+        grid on;
+        legend('Noise Variance', 'Distortion Variance', 'Total Variance');
+
+    end
+
+end

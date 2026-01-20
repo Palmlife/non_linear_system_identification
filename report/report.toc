@@ -1,0 +1,52 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}The system and the excitation signal}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Excitation signal}{1}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Fast method}{2}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Robust method}{3}{subsection.1.2.2}%
+\contentsline {chapter}{\numberline {2}Non-Parametric Estimate of the System}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Non-parametric estimate}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Fast method}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Robust method}{6}{subsection.2.1.2}%
+\contentsline {chapter}{\numberline {3}Parametric Estimate of the System}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Transfer Function Model}{7}{section.3.1}%
+\contentsline {subsubsection}{Monic Constraint}{7}{section*.6}%
+\contentsline {subsubsection}{Norm Constraint}{7}{section*.7}%
+\contentsline {section}{\numberline {3.2}Derivation of the Regressor Matrix}{8}{section.3.2}%
+\contentsline {subsubsection}{Regressor for Norm Constraint (TLS)}{8}{section*.8}%
+\contentsline {subsubsection}{Regressor for Monic Constraint (LLS/WLS/IQML)}{8}{section*.9}%
+\contentsline {section}{\numberline {3.3}Handling Complex Data with Real Parameters}{9}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Linear Least Squares (LLS)}{9}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Iterative Weighted Least Squares (IWLS)}{10}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}The Sanathanan-Koerner Algorithm}{10}{subsection.3.5.1}%
+\contentsline {section}{\numberline {3.6}Total Least Squares (TLS)}{11}{section.3.6}%
+\contentsline {subsubsection}{Solution via SVD}{11}{section*.12}%
+\contentsline {section}{\numberline {3.7}Generalized Total Least Squares (GTLS)}{12}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Modified Constraint}{13}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Construction of $C_J^{1/2}$}{13}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}Solution via Generalized SVD}{13}{subsection.3.7.3}%
+\contentsline {section}{\numberline {3.8}Weighted Least Squares (WLS)}{14}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Iterative Quadratic Maximum Likelihood (IQML)}{15}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}The Problem with Equation Error}{15}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Correcting for the Equation Error Bias}{16}{subsection.3.9.2}%
+\contentsline {subsection}{\numberline {3.9.3}Iterative Solution}{16}{subsection.3.9.3}%
+\contentsline {section}{\numberline {3.10}Nonlinear Least Squares via Levenberg-Marquardt (NLS/ML)}{17}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Output Error Cost Function}{18}{subsection.3.10.1}%
+\contentsline {subsection}{\numberline {3.10.2}Levenberg-Marquardt Optimization}{18}{subsection.3.10.2}%
+\contentsline {subsection}{\numberline {3.10.3}Algorithm}{18}{subsection.3.10.3}%
+\contentsline {section}{\numberline {3.11}Summary of Methods}{20}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Cost Functions for Comparison}{20}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Why Does LLS Perform Well Despite No Noise Weighting?}{21}{subsection.3.11.2}%
+\contentsline {chapter}{\numberline {4}Model order selection}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Corrected Akaike Information Criterion (AICc)}{23}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Whiteness Test}{23}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Generalized Information Criterion (GIC)}{24}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Results}{24}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Linear Least Squares (LLS)}{25}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Total Least Squares (TLS)}{25}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Generalized Total Least Squares (GTLS)}{25}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Weighted Least Squares (WLS)}{26}{subsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.4.5}Iterative Weighted Least Squares (IWLS)}{26}{subsection.4.4.5}%
+\contentsline {subsection}{\numberline {4.4.6}Iterative Quadratic Maximum Likelihood (IQML)}{27}{subsection.4.4.6}%
+\contentsline {subsection}{\numberline {4.4.7}Maximum Likelihood (ML)}{27}{subsection.4.4.7}%
+\contentsline {subsection}{\numberline {4.4.8}Comparison Across All Methods}{27}{subsection.4.4.8}%
