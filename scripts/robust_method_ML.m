@@ -5,9 +5,13 @@
 % 3. Average Y and U over realizations
 % 4. Compute FRF = Y_avg / U_avg
 
-function [G_ML, f, noise_var, total_var, distortion_var] = robust_method_ML(file_name, fs, showPlot)
+function [G_ML, f, noise_var, total_var, distortion_var] = robust_method_ML(file_name, fs, showPlot, powerLevel)
+    if nargin < 3 || isempty(showPlot), showPlot = 0; end
+    if nargin < 4 || isempty(powerLevel), powerLevel = 1; end
+
     % Load data
-    [u, y, ~, sig, realizations, ~] = acquisition(file_name);
+    [u, y, ~, sig, realizations, power_levels] = acquisition(file_name);
+    assert(powerLevel >= 1 && powerLevel <= power_levels, 'Power level must be between 1 and %d', power_levels);
 
     N = size(u, 1);
     Npp = size(sig, 1); % number of samples of the original period
@@ -39,8 +43,8 @@ function [G_ML, f, noise_var, total_var, distortion_var] = robust_method_ML(file
         % First pass: compute sums over periods
         Y_all_periods = zeros(periods, Npp);
         for p = 1:periods
-            u_per = u((p-1)*Npp + 1:p*Npp, r, 1);
-            y_per = y((p-1)*Npp + 1:p*Npp, r, 1);
+            u_per = u((p-1)*Npp + 1:p*Npp, r, powerLevel);
+            y_per = y((p-1)*Npp + 1:p*Npp, r, powerLevel);
             
             U = fft(u_per);
             Y = fft(y_per);

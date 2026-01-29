@@ -1,6 +1,6 @@
-PWD c:\Users\Sidy-\Documents\VUB\2MA\Identification of dynamical systems\Identification-of-dynamical-systems-project\report
+PWD c:\Users\Sidy-\Documents\VUB\2MA\Selected topics in non linear system identification\Non_linear_system_identification\report
 INPUT C:\Users\Sidy-\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Sidy-\Documents\VUB\2MA\Identification of dynamical systems\Identification-of-dynamical-systems-project\report\report.tex
+INPUT c:\Users\Sidy-\Documents\VUB\2MA\Selected topics in non linear system identification\Non_linear_system_identification\report\report.tex
 OUTPUT report.log
 INPUT .\ULBreport.cls
 INPUT ULBreport.cls
